@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body ng-controller="testController">
+    <pen-page conf="pageConf"></pen-page>
+    <script src="lib/angular.min.js"></script>
+    <script src="src/pager.js"></script>
+    <script>
+    angular.module('myApp', ['pager']).controller('testController', function($scope, $timeout) {
+        $scope.pageConf = {
+            currentPage: 1,
+            totalCount: 800,
+            pagesLength: 15,
+            pageSize: 15,
+            pageSizes: [10, 15, 20, 30, 40, 50],
+            onChange: function() {
+                alert(this.currentPage)
+            }
+        };
+    })
+    </script>
+</body>
+
+</html>

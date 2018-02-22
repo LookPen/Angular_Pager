@@ -1,0 +1,116 @@
+<div class="page-list">
+    <ul class="page">
+        <li ng-class="{disabled:conf.currentPage==1}" ng-click="prePage()"><span>&laquo;</span></li>
+        <li ng-repeat="page in conf.pageList track by $index" ng-class="{active:conf.currentPage==page,separate:page=='...'}" ng-click="changePage(page)">
+            <span>
+				{{page}}
+			</span>
+        </li>
+        <li ng-class="{disabled:conf.currentPage==conf.pageCount}" ng-click="nextPage()"><span>&raquo;</span></li>
+    </ul>
+    <div class="page-total">
+        每页
+        <select ng-options="option for option in conf.pageSizes" ng-model="conf.pageSize" ng-change="changePageSize()"></select>
+        /共<strong>{{conf.totalCount}}</strong>条 跳转至
+        <input type="text" ng-model="conf.jumpPage" ng-keyup="jumpPageKeyUp($event)">
+    </div>
+</div>
+<style type="text/css">
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+.page-list .page {
+    float: left;
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+    letter-spacing: -5px;
+}
+
+.page-list .page .active span {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+.page-list .page .separate span {
+    cursor: default;
+    border-top: none;
+    border-bottom: none;
+}
+
+.page-list .page .separate span:hover {
+    background: none
+}
+
+.page-list .page span {
+    color: #428bca;
+    background-color: #fff;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    margin-left: -1px;
+}
+
+.page-list .page span:hover {
+    color: #2a6496;
+    background-color: #eee;
+    border-color: #ddd;
+    cursor: pointer;
+}
+
+
+.page-list .page .disabled{
+pointer-events: none;
+}
+
+.page-list .page .disabled span {
+		
+	cursor: not-allowed;
+    color: #777;
+    background-color: #fff;
+    border-color: #ddd;
+}
+
+.page-list .page span: {
+    color: #2a6496;
+    background-color: #eee;
+    border-color: #ddd;
+    ;
+    cursor: pointer;
+}
+
+.page-list .page li {
+    display: inline;
+    letter-spacing: normal;
+}
+
+.page-list li:first-child span {
+    margin-left: 0xp;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.page-list li:last-child span {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.page-list .page-total {
+    float: left;
+    margin: 16px 20px;
+}
+
+.page-list .page-total input {
+    width: 40px;
+    height: 20px;
+}
+</style>
